@@ -1,7 +1,7 @@
 
-from aero import conversion
-from aero import wattage
-from aero import wheel
+from wattage import conversion
+from wattage import wattage
+from wattage import wheel
 
 
 _chainrings = list(range(30,63,1))

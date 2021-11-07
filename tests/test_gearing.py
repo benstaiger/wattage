@@ -1,1 +1,1 @@
-from wattage import grearing
+from wattage import gearing
