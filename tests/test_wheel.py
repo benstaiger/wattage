@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from aero import wheel
+from wattage import wheel
 
 
 def test_wheel_data():

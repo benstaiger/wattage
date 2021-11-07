@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from aero.conversion import mm_to_m
+from wattage.conversion import mm_to_m
 
 
 _data = pd.DataFrame()

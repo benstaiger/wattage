@@ -1,6 +1,6 @@
 import pytest
 
-from aero import conversion
+from wattage import conversion
 
 def test_kph_to_mph():
     assert pytest.approx(conversion.kph_to_mph(5), abs=0.1) == 3.1
