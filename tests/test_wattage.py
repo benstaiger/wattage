@@ -11,8 +11,9 @@ def test_wattage_simple():
     cda = 0.25
     gradient = 0
     wind_speed = 0  # m/s
+    expected_watts = 246.395
     speed = 40 * 1000.0 / 60.0 / 60.0  # 40kph in m/s
-    watts = wattage.wattage_requirement(
+    watts = wattage.solve_for_watts(
         target_velocity=speed,
         acceleration=0,
         slope=gradient,
@@ -22,4 +23,5 @@ def test_wattage_simple():
         cda=cda,
         air_density=air_density
     )
-    assert pytest.approx(watts, rel=0.01) == 246.395
+    assert pytest.approx(watts, rel=0.01) == expected_watts
+    
