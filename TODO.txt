@@ -1,0 +1,2 @@
+All units are currently implicit and a number of conversions are done throughout the code throughout the code based on
+this undestanding. Things should have explicitly typed units to avoid issues / confusion.
