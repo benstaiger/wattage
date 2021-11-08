@@ -77,4 +77,4 @@ def test_velocity_simple():
         cda=cda,
         air_density=air_density
     )
-    # assert estimated_speed == target_speed
+    assert estimated_speed == target_speed
