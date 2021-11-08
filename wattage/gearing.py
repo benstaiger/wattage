@@ -24,22 +24,23 @@ def find_gear_ratio(watts: float, cadence: float, incline: float, wheel: Wheel, 
 def find_cassette(chainring, gear_ratio, rel_err=0.05):
     setups = []
     for c in _cassettes:
-        if abs(gear_ratio - chainring / c) < rel_err:
+        err =  abs(1 - gear_ratio / (chainring / c))
+        if err < rel_err:
             setups.append({
                 "chainring": chainring,
                 "cassette": c,
                 "gear_ratio": chainring / c,
-                "rel_err": abs(gear_ratio - chainring / c),
+                "rel_err": err,
             })
     return setups
 
 
-def find_setups(gear_ratio, rel_err=0.05):
+def find_setups(gear_ratio, chainrings=_chainrings,rel_err=0.05):
     """
     return a list of chainring / cassettes that will contain the 
     desired ratio.
     """
     setups = []
-    for r in _chainrings:
+    for r in chainrings:
         setups.extend(find_cassette(r, gear_ratio, rel_err))
     return setups
