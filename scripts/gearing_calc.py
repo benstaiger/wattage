@@ -91,7 +91,7 @@ def main():
     fig, (ax1, ax2) = plt.subplots(1, 2)
     plot_power_curve(ax1, power_curve, power_pr)
     plot_setups(ax2, options, ratio)
-    fig.suptitle(f"Incline={incline*100}%, Total Mass={total_mass}kg, Cadence={desired_cadence}rmp, Possible Chainrings={chainrings}")
+    fig.suptitle(f"Incline={incline*100}%, Total Mass={total_mass}kg, Cadence={desired_cadence}rpm, Possible Chainrings={chainrings}")
     plt.show()
 
 
