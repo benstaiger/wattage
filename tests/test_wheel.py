@@ -40,19 +40,29 @@ def test_invalid_construction():
         pass
 
 
-def test_rpm():
+def test_cadence():
     wheel0 = wheel.Wheel("700c/29er", "25mm")
     speed = 40.0 * 1000.0 / 60.0 / 60.0  # 40kph
     # 11.111m/s with wheel circumference of 2.11115m
     # -> ~5.263 rps
     # -> ~315.783 rpm
-    assert pytest.approx(wheel0.rpm(speed), rel=0.01) == 315.783
+    assert pytest.approx(wheel0.cadence(speed), rel=0.01) == 315.783
     # 53-11 gear-ratio
-    ratio = 53/11
-    assert pytest.approx(wheel0.rpm(speed, ratio), rel=0.01) == 315.783 / ratio
+    ratio = 53.0/11.0
+    assert pytest.approx(wheel0.cadence(speed, ratio), rel=0.01) == 315.783 / ratio
 
 
-if __name__ == "__main__":
-    test_wheel_data()
-    test_invalid_construction()
-    test_rpm()
+def test_gear_ratio():
+    wheel0 = wheel.Wheel("700c/29er", "25mm")
+    speed = 54.9 * 1000.0 / 60.0 / 60.0  # 40kph in m/s
+    ratio = 53.0/11.0
+    cadence = 90.0
+    assert pytest.approx(wheel0.gear_ratio(speed, cadence), rel=0.01) == ratio
+
+
+def test_speed():
+    wheel0 = wheel.Wheel("700c/29er", "25mm")
+    speed = 54.9 * 1000.0 / 60.0 / 60.0  # 40kph in m/s
+    ratio = 53.0/11.0
+    cadence = 90.0
+    assert pytest.approx(wheel0.speed(cadence, ratio), rel=0.01) == speed

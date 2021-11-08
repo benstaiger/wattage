@@ -50,7 +50,21 @@ class Wheel:
     def cirumference(self):
         return self._circumference
     
-    def rpm(self, speed: float, gear_ratio: float=1):
-        """Take a speed in m/s and return an rpm"""
+    def cadence(self, speed: float, gear_ratio: float=1):
+        """Take a speed in m/s and return an rpm. rpm is measured at the crank.
+        """
         rotations_per_second = speed / mm_to_m(self.cirumference)
         return rotations_per_second * 60 / gear_ratio
+    
+    def gear_ratio(self, speed: float, cadence: float):
+        """Return the gear ratio required for the provided speed and cadence(rpm)
+        """
+        rotations_per_second = speed / mm_to_m(self.cirumference)
+        return rotations_per_second / (cadence / 60.0)
+    
+    def speed(self, cadence: float, gear_ratio: float=1):
+        """Find the speed for a given cadence(rpm) / gear_ratio. rpm is measured at the crank, not the wheel.
+        """
+        rotations_per_second = cadence / 60.0 * gear_ratio
+        print(cadence, gear_ratio, rotations_per_second)
+        return rotations_per_second * mm_to_m(self.cirumference)
