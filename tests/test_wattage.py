@@ -26,6 +26,29 @@ def test_wattage_simple():
     assert pytest.approx(watts, rel=0.01) == expected_watts
 
 
+def test_wattage_incline():
+    air_density = 1.226  # kg/m**3, average @ sea-level
+    rider_mass = 75  # kg
+    bike_mass = 8  # kg
+    crr = 0.004
+    cda = 0.25
+    gradient = 0.05  # 5%
+    wind_speed = 0  # m/s
+    expected_watts = 270.16
+    speed = 20 * 1000.0 / 60.0 / 60.0  # 20kph in m/s
+    watts = wattage.solve_for_watts(
+        target_velocity=speed,
+        acceleration=0,
+        slope=gradient,
+        total_mass=rider_mass+bike_mass,
+        relative_wind=wind_speed,
+        c_rolling=crr,
+        cda=cda,
+        air_density=air_density
+    )
+    assert pytest.approx(watts, rel=0.01) == expected_watts
+
+
 def test_newton_method_linear():
     slope = 3
     y_int = 2
@@ -78,3 +101,26 @@ def test_velocity_simple():
         air_density=air_density
     )
     assert estimated_speed == target_speed
+
+
+def test_velocity_incline():
+    air_density = 1.226  # kg/m**3, average @ sea-level
+    rider_mass = 75  # kg
+    bike_mass = 8  # kg
+    crr = 0.004
+    cda = 0.25
+    gradient = 0.05  # 5%
+    wind_speed = 0  # m/s
+    watts = 270.16
+    expected_speed = 20 * 1000.0 / 60.0 / 60.0  # 20kph in m/s
+    speed = wattage.solve_for_speed(
+        target_watts=watts,
+        acceleration=0,
+        slope=gradient,
+        total_mass=rider_mass+bike_mass,
+        # relative_wind=wind_speed,
+        c_rolling=crr,
+        cda=cda,
+        air_density=air_density
+    )
+    assert pytest.approx(speed, rel=0.01) == expected_speed
