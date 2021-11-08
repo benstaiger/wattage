@@ -11,10 +11,7 @@ class CriticalPower:
         # only use samples between 1 and 30 minutes.
         self._x = [1/x[0] for x in samples if x[0] >= 60 and x[1] <= 1800]
         self._y = [x[1] for x in samples if x[0] >= 60 and x[1] <= 1800]
-        print(samples)
-        print(self._x, self._y)
         self._B, self._a = CriticalPower._ols(self._x, self._y)
-        print(self._B, self._a)
 
     @staticmethod
     def _ols(x, y):

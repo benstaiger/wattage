@@ -18,7 +18,6 @@ def test_find_setups():
     ratio = chainring / 11.0
     setups = gearing.find_setups(ratio, rel_err=1e-4)
     found_real_setup = False
-    print(setups)
     for s in setups:
         if s["cassette"] == 11 and s["chainring"] == 53:
             found_real_setup = True

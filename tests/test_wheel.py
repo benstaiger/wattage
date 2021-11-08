@@ -12,7 +12,6 @@ def test_wheel_data():
         dtype={"rim": str, "tire": str, "rim_mm": np.float32, "tire_mm": np.float32, "diameter_mm": np.float32, "circumference_mm": np.float32})
 
     for _, row in data.iterrows():
-        print(row.tire, row.rim)
         wheel0 = wheel.Wheel(row.rim, row.tire)
 
         # Test interface

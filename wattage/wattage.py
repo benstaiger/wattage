@@ -29,10 +29,8 @@ def _newton_method(f, fdx, initial=0, iterations=10):
         return intercept, error
     
     x, err = _newton_step(initial)
-    print(x, err)
     for _ in range(iterations):
         x, err = _newton_step(x)
-        print(x, err)
     return x
 
 
