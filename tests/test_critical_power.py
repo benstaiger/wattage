@@ -22,6 +22,7 @@ def test_estimated_power():
     for xi, yi in zip(x, y):
         assert pytest.approx(yi, rel=0.001) == cp.estimated_power(xi)
 
+
 def test_estimated_ftp():
     x = list(range(60, 70))
     test_B = 2
